@@ -36,28 +36,27 @@
                 shot[19] = document.score.shot10b.value;
                 shot[20] = document.score.shot10c.value;
             }
-            function verify() {
-                //for first 9 frames
+            function verify()
                 for (i = 0; i <= 17; i += 2) {
-                    switch (shot[i]) {//first shot of the frame
+                    switch (shot[i]) {
                         case 'x': case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': break;
                         default: alert("Invalid"); return false;
                     }
 
-                    switch (shot[i + 1]) {//second shot of the frame
+                    switch (shot[i + 1]) {
                         case '/': if (shot[i] < '0' || shot[i] > '9') { alert("Invalid"); return false; }
                         case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': if (parseInt(shot[i]) + parseInt(shot[i + 1]) > 9) { alert("Invalid"); return false; } break;
                         default: if (shot[i] != 'x') { alert("Invalid"); return false; }
                     }
                 }
 
-                //for tenth frame
-                switch (shot[18]) {//first shot
+              
+                switch (shot[18]) {
                     case 'x': case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': break;
                     default: alert("Invalid"); return false;
                 }
 
-                switch (shot[19]) {//second shot
+                switch (shot[19]) {
                     case 'x': if (shot[18] != 'x') { alert("Invalid"); return false; } break;
                     case '/': if (shot[18] < '0' || shot[18] > '9') { alert("Invalid"); return false; } break;
                     case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
@@ -67,7 +66,7 @@
 
                 if (shot[18] != 'x' && shot[19] != '/') return true;
 
-                switch (shot[20]) {//third shot
+                switch (shot[20]) {
                     case 'x': if (shot[19] != 'x' && shot[19] != '/') { alert("Invalid"); return false; } break;
                     case '/': if (shot[19] < '0' || shot[19] > '9') { alert("Invalid"); return false; } break;
                     case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
@@ -89,22 +88,22 @@
                             score[i] = lastFrame + 20 + parseInt(shot[2 * i + 4]);
                         else if (shot[2 * i + 3] == '/') //the strike followed by a spare
                             score[i] = lastFrame + 20;
-                        else //the strike followed by an open
+                        else 
                             score[i] = lastFrame + 10 + parseInt(shot[2 * i + 2]) + parseInt(shot[2 * i + 3]);
                     }
 
                     else if (shot[2 * i + 1] == '/') { 
                         if (shot[2 * i + 2] == 'x') 
                             score[i] = lastFrame + 20;
-                        else //the next shot not a strike
+                        else 
                             score[i] = lastFrame + 10 + parseInt(shot[2 * i + 2]);
                     }
 
-                    else //will open this frame
+                    else 
                         score[i] = lastFrame + parseInt(shot[2 * i]) + parseInt(shot[2 * i + 1]);
                     lastFrame = score[i];
                 }
-                //9th frame
+                
                 if (shot[16] == 'x') {
                     if ((shot[18] == 'x') && (shot[19] == 'x'))
                         score[8] = lastFrame + 30;
@@ -112,40 +111,39 @@
                         score[8] = lastFrame + 20 + parseInt(shot[19]);
                     else if (shot[19] == '/')
                         score[8] = lastFrame + 20;
-                    else//will followed by an open in the tenth
+                    else
                         score[8] = lastFrame + 10 + parseInt(shot[18]) + parseInt(shot[19]);
                 }
 
                 else if (shot[17] == '/') {
                     if (shot[18] == 'x')
                         score[8] = lastFrame + 20;
-                    else//will followed by something else
+                    else
                         score[8] = lastFrame + 10 + parseInt(shot[18]);
                 }
 
-                else //will open the frame
+                else 
                     score[8] = lastFrame + parseInt(shot[16]) + parseInt(shot[17]);
                 lastFrame = score[8];
-                //10th frame
-                if (shot[18] == 'x') { //the first shot is a strike
+                if (shot[18] == 'x') { 
                     if ((shot[19] == 'x') && (shot[20] == 'x'))
                         score[9] = lastFrame + 30;
                     else if (shot[19] == 'x')
                         score[9] = lastFrame + 20 + parseInt(shot[20]);
                     else if (shot[20] == '/')
                         score[9] = lastFrame + 20;
-                    else//the one strike followed by an open
+                    else
                         score[9] = lastFrame + 10 + parseInt(shot[19]) + parseInt(shot[20]);
                 }
 
                 else if (shot[19] == '/') { 
                     if (shot[20] == 'x') 
                         score[9] = lastFrame + 20;
-                    else//spare followed by an open
+                    else
                         score[9] = lastFrame + 10 + parseInt(shot[20]);
                 }
 
-                else //will open the tenth
+                else 
                     score[9] = lastFrame + parseInt(shot[18]) + parseInt(shot[19]);
             }
 
