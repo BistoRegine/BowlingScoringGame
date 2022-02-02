@@ -86,7 +86,7 @@
                             score[i] = lastFrame + 30;
                         else if (shot[2 * i + 2] == 'x')
                             score[i] = lastFrame + 20 + parseInt(shot[2 * i + 4]);
-                        else if (shot[2 * i + 3] == '/') //the strike followed by a spare
+                        else if (shot[2 * i + 3] == '/') 
                             score[i] = lastFrame + 20;
                         else 
                             score[i] = lastFrame + 10 + parseInt(shot[2 * i + 2]) + parseInt(shot[2 * i + 3]);
